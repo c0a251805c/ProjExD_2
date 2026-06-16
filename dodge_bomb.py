@@ -65,7 +65,7 @@ def init_bb_images() -> tuple[list[pg.Surface],list[int]]:
         pg.draw.circle(bb_img,(225,0,0),(10*r,10*r),10*r)
         bb_img.set_colorkey((0,0,0))
         bb_imgs.append(bb_img)
-        bb_accs = [a for a in range(1,11)]
+    bb_accs = [a for a in range(1,11)]
 
     return bb_imgs,bb_accs
 
@@ -131,9 +131,11 @@ def main():
         bb_rct.width = bb_img.get_rect().width
         bb_rct.height = bb_img.get_rect().height
         
-        avx = vx * bb_accs[min(tmr//500, 9)]
-        avy = vy * bb_accs[min(tmr//500, 9)]
-        bb_img = bb_imgs[min(tmr//500, 9)]
+        idx = min(tmr // 500,9)
+
+        avx = vx * bb_accs[idx]
+        avy = vy * bb_accs[idx]
+        bb_img = bb_imgs[idx]
         
         bb_rct.move_ip(avx,avy)
         yoko,tate =  check_bound(bb_rct)
